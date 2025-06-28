@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ELITE WEB STUDIO - Web Development Company</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* Reset and base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f9f9fb;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Container */
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Header and Navbar */
+    header {
+      background: #0d253f;
+      color: white;
+      padding: 20px 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 999;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #00bfa6;
+      user-select: none;
+    }
+    nav {
+      display: flex;
+      gap: 25px;
+    }
+    nav a {
+      color: white;
+      font-weight: 600;
+      padding: 8px 12px;
+      border-radius: 4px;
+      transition: background 0.3s ease;
+    }
+    nav a:hover,
+    nav a.active {
+      background: #00bfa6;
+      color: white;
+    }
+
+    /* Mobile Nav */
+    .mobile-nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: white;
+      font-size: 1.8rem;
+    }
+    @media (max-width: 900px) {
+      nav {
+        position: fixed;
+        top: 68px;
+        right: -100%;
+        background: #0d253f;
+        flex-direction: column;
+        width: 250px;
+        height: calc(100% - 68px);
+        padding-top: 25px;
+        transition: right 0.3s ease;
+        box-shadow: -2px 0 8px rgba(0,0,0,0.3);
+      }
+      nav.open {
+        right: 0;
+      }
+      nav a {
+        padding: 15px 25px;
+        font-size: 1.1rem;
+      }
+      .mobile-nav-toggle {
+        display: block;
+      }
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(rgba(13,37,63,0.75), rgba(13,37,63,0.75)), url('https://images.unsplash.com/photo-1508385082359-fb328005464b?auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      padding: 0 20px;
+      margin-top: 68px;
+    }
+    .hero-content {
+      max-width: 700px;
+    }
+    .hero-content h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+      text-shadow: 1px 1px 8px rgba(0,0,0,0.6);
+    }
+    .hero-content p {
+      font-size: 1.25rem;
+      margin-bottom: 30px;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+    }
+    .hero-content a.btn-primary {
+      background-color: #00bfa6;
+      color: white;
+      padding: 14px 36px;
+      font-weight: 600;
+      border-radius: 30px;
+      box-shadow: 0 5px 15px rgba(0,191,166,0.5);
+      transition: background-color 0.3s ease;
+    }
+    .hero-content a.btn-primary:hover {
+      background-color: #009e8f;
+    }
+
+    /* About Section */
+    #about {
+      padding: 80px 0;
+      background-color: white;
+    }
+    #about h2 {
+      font-size: 2.4rem;
+      color: #0d253f;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    #about p {
+      max-width: 800px;
+      margin: 0 auto 40px auto;
+      font-size: 1.1rem;
+      color: #555;
+      text-align: center;
+      line-height: 1.8;
+    }
+    #about .features {
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      flex-wrap: wrap;
+    }
+    .feature-box {
+      flex: 1 1 280px;
+      text-align: center;
+      padding: 20px;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+      background: #f1f5f9;
+      box-shadow: 0 0 15px rgba(0,0,0,0.05);
+      cursor: default;
+    }
+    .feature-box:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 25px rgba(0,191,166,0.25);
+    }
+    .feature-box svg {
+      width: 48px;
+      height: 48px;
+      fill: #00bfa6;
+      margin-bottom: 12px;
+    }
+    .feature-box h3 {
+      font-size: 1.3rem;
+      color: #0d253f;
+      margin-bottom: 10px;
+    }
+    .feature-box p {
+      color: #555;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    /* Services Section */
+    #services {
+      background-color: #e8f7f4;
+      padding: 80px 0;
+    }
+    #services h2 {
+      text-align: center;
+      font-size: 2.4rem;
+      margin-bottom: 15px;
+      color: #0d253f;
+    }
+    #services p.description {
+      max-width: 700px;
+      margin: 0 auto 50px auto;
+      font-size: 1.1rem;
+      text-align: center;
+      color: #555;
+      line-height: 1.7;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: 30px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .service-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      padding: 30px 25px;
+      transition: box-shadow 0.3s ease;
+      cursor: default;
+      text-align: center;
+    }
+    .service-card:hover {
+      box-shadow: 0 12px 30px rgba(0,191,166,0.3);
+      transform: translateY(-6px);
+    }
+    .service-icon {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 18px;
+      fill: #00bfa6;
+    }
+    .service-card h3 {
+      font-size: 1.4rem;
+      color: #0d253f;
+      margin-bottom: 12px;
+    }
+    .service-card p {
+      color: #555;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    /* Portfolio / Gallery Section */
+    #portfolio {
+      padding: 80px 0;
+      background-color: white;
+    }
+    #portfolio h2 {
+      font-size: 2.4rem;
+      text-align: center;
+      color: #0d253f;
+      margin-bottom: 15px;
+    }
+    #portfolio p.description {
+      max-width: 700px;
+      margin: 0 auto 40px auto;
+      color: #555;
+      font-size: 1.1rem;
+      text-align: center;
+      line-height: 1.7;
+    }
+    .gallery {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: 15px;
+    }
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      background-color: #fafafa;
+      transition: transform 0.3s ease;
+    }
+    .gallery-item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 35px rgba(0,191,166,0.25);
+      z-index: 5;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+      border-radius: 12px;
+    }
+    .gallery-item .overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,191,166,0.85), transparent);
+      color: white;
+      padding: 15px 20px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      border-radius: 0 0 12px 12px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .gallery-item:hover .overlay {
+      opacity: 1;
+    }
+
+    /* Clients Section */
+    #clients {
+      padding: 60px 0 80px 0;
+      background-color: #e8f7f4;
+    }
+    #clients h2 {
+      text-align: center;
+      color: #0d253f;
+      font-size: 2.2rem;
+      margin-bottom: 30px;
+    }
+    .clients-logos {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 35px;
+      align-items: center;
+    }
+    .client-logo {
+      max-width: 140px;
+      max-height: 60px;
+      filter: grayscale(100%);
+      transition: filter 0.3s ease;
+      opacity: 0.7;
+      user-select: none;
+    }
+    .client-logo:hover {
+      filter: none;
+      opacity: 1;
+    }
+
+    /* Testimonials Section */
+    #testimonials {
+      background-color: white;
+      padding: 80px 0;
+    }
+    #testimonials h2 {
+      text-align: center;
+      color: #0d253f;
+      font-size: 2.4rem;
+      margin-bottom: 15px;
+    }
+    #testimonials p.description {
+      max-width: 700px;
+      margin: 0 auto 50px auto;
+      text-align: center;
+      font-size: 1.1rem;
+      color: #555;
+      line-height: 1.7;
+    }
+    .testimonial-container {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+      user-select: none;
+    }
+    .testimonial-slide {
+      opacity: 0;
+      transition: opacity 0.6s ease;
+      text-align: center;
+      padding: 0 30px;
+      min-height: 180px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      pointer-events: none;
+    }
+    .testimonial-slide.active {
+      opacity: 1;
+      position: relative;
+      pointer-events: auto;
+    }
+    .testimonial-text {
+      font-size: 1.1rem;
+      font-style: italic;
+      color: #444;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+    .testimonial-author {
+      font-weight: 700;
+      color: #00bfa6;
+      font-size: 1.1rem;
+    }
+    .testimonial-position {
+      color: #777;
+      font-size: 0.9rem;
+      margin-top: 4px;
+    }
+    .testimonial-nav {
+      margin-top: 25px;
+      text-align: center;
+      user-select: none;
+    }
+    .testimonial-nav button {
+      border: none;
+      background: #00bfa6;
+      color: white;
+      padding: 10px 18px;
+      margin: 0 12px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.3rem;
+      transition: background-color 0.3s;
+    }
+    .testimonial-nav button:hover {
+      background-color: #009e8f;
+    }
+
+    /* Contact Section */
+    #contact {
+      background-color: #0d253f;
+      padding: 80px 20px;
+      color: white;
+    }
+    #contact .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    #contact h2 {
+      text-align: center;
+      font-size: 2.4rem;
+      margin-bottom: 10px;
+    }
+    #contact p.description {
+      text-align: center;
+      margin-bottom: 40px;
+      color: #b9d6d0;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+    form.contact-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px 30px;
+    }
+    form.contact-form input,
+    form.contact-form textarea {
+      padding: 15px 20px;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: none;
+      resize: none;
+      font-family: 'Poppins', sans-serif;
+    }
+    form.contact-form input::placeholder,
+    form.contact-form textarea::placeholder {
+      color: #666;
+    }
+    form.contact-form textarea {
+      grid-column: 1 / -1;
+      min-height: 140px;
+    }
+    form.contact-form button {
+      grid-column: 1 / -1;
+      background-color: #00bfa6;
+      border: none;
+      padding: 18px 0;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: white;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    form.contact-form button:hover {
+      background-color: #009e8f;
+    }
+    /* Footer */
+    footer {
+      background-color: #092135;
+      color: #bbb;
+      padding: 30px 20px;
+      text-align: center;
+      font-size: 0.9rem;
+      user-select: none;
+    }
+    footer a {
+      color: #00bfa6;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header & Navigation -->
+  <header aria-label="Primary website header">
+    <div class="container">
+      <a href="#hero" class="logo" aria-label="Elite Web Studio homepage">ELITE WEB STUDIO</a>
+      <nav aria-label="Primary navigation" id="navbar">
+        <a href="#hero" class="active">Home</a>
+        <a href="#about">About Us</a>
+        <a href="#services">Our Services</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#clients">Clients</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="mobile-nav-toggle" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation menu">&#9776;</button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero" role="banner">
+    <div class="hero-content" tabindex="0">
+      <h1>Building Stunning Websites That Grow Your Business</h1>
+      <p>At ELITE WEB STUDIO, we create beautiful, responsive, and user-friendly websites tailored to your needs.</p>
+      <a href="#contact" class="btn-primary" role="button">Get a Free Quote</a>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" aria-labelledby="about-title">
+    <div class="container">
+      <h2 id="about-title">About ELITE WEB STUDIO</h2>
+      <p>We are a passionate web development company dedicated to crafting innovative digital experiences that empower brands. With expertise in front-end, back-end, and full stack development, our team delivers modern, scalable solutions tailored to your business goals.</p>
+      <div class="features" role="list">
+        <article class="feature-box" role="listitem" tabindex="0">
+          <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+            <path d="M32 2a30 30 0 1 0 30 30A30.034 30.034 0 0 0 32 2Zm0 56a26 26 0 1 1 26-26 26.029 26.029 0 0 1-26 26Z"/>
+            <path d="M19 29h26v6H19z"/>
+          </svg>
+          <h3>Custom Development</h3>
+          <p>We build tailor-made solutions that match your unique business needs and goals.</p>
+        </article>
+        <article class="feature-box" role="listitem" tabindex="0">
+          <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+            <path d="M12 22h40v20H12z" fill="none" stroke="#00bfa6" stroke-width="4" stroke-linejoin="round"/>
+            <circle cx="32" cy="32" r="8" fill="#00bfa6"/>
+          </svg>
+          <h3>Responsive Design</h3>
+          <p>Mobile-first approach ensures your website looks perfect on all devices.</p>
+        </article>
+        <article class="feature-box" role="listitem" tabindex="0">
+          <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+            <path d="M20 44h24v4H20zM32 14v30M20 24h24" stroke="#00bfa6" stroke-width="4" stroke-linecap="round"/>
+          </svg>
+          <h3>Fast & Secure</h3>
+          <p>Optimized performance and strong security practices to safeguard your digital presence.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" aria-labelledby="services-title">
+    <div class="container">
+      <h2 id="services-title">Our Services</h2>
+      <p class="description">From simple landing pages to complex web applications, our services cover everything you need to thrive online.</p>
+      <div class="services-grid" role="list">
+        <article class="service-card" role="listitem" tabindex="0">
+          <svg class="service-icon" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+            <path d="M12 22h40v20H12z" fill="#00bfa6"/>
+            <path d="M20 34h24" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+          </svg>
+          <h3>Website Development</h3>
+          <p>Building reliable, high-quality websites using the latest technologies.</p>
+        </article>
+        <article class="service-card" role="listitem" tabindex="0">
+          <svg class="service-icon" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+            <circle cx="32" cy="32" r="30" fill="none" stroke="#00bfa6" stroke-width="4"/>
+            <path d="M32 12v20l12 7" stroke="#00bfa6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <h3>E-commerce Solutions</h3>
+          <p>Create seamless online stores with secure payment systems and inventory management.</p>
+        </article>
+        <article class="service-card" role="listitem" tabindex="0">
+          <svg class="service-icon" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+            <rect x="12" y="20" width="40" height="24" fill="#00bfa6"/>
+            <circle cx="20" cy="44" r="4" fill="#004d40"/>
+            <circle cx="44" cy="44" r="4" fill="#004d40"/>
+            <path d="M32 20v-8" stroke="#004d40" stroke-width="4" stroke-linecap="round"/>
+          </svg>
+          <h3>Web App Development</h3>
+          <p>Develop interactive, scalable web applications tailored for your business.</p>
+        </article>
+        <article class="service-card" role="listitem" tabindex="0">
+          <svg class="service-icon" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+            <rect x="14" y="14" width="36" height="36" rx="4" ry="4" fill="none" stroke="#00bfa6" stroke-width="4"/>
+            <path d="M32 18v28" stroke="#00bfa6" stroke-width="4" stroke-linecap="round"/>
+          </svg>
+          <h3>SEO & Marketing</h3>
+          <p>Improve your online visibility and reach through tailored SEO and digital marketing strategies.</p>
+        </article>
+        <article class="service-card" role="listitem" tabindex="0">
+          <svg class="service-icon" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+            <path d="M12 52h40v-6H12zM22 44v-6h20v6H22z" fill="#00bfa6"/>
+            <circle cx="32" cy="24" r="12" fill="#00bfa6"/>
+          </svg>
+          <h3>Maintenance & Support</h3>
+          <p>Keep your website updated and running smoothly with our ongoing support.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio / Gallery Section -->
+  <section id="portfolio" aria-labelledby="portfolio-title">
+    <div class="container">
+      <h2 id="portfolio-title">Our Portfolio</h2>
+      <p class="description">A showcase of some of the best projects we've had the pleasure to build for our clients.</p>
+      <div class="gallery" role="list" aria-live="polite" aria-label="Portfolio gallery">
+        <article class="gallery-item" role="listitem" tabindex="0" aria-describedby="proj1desc">
+          <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80" alt="Screenshot of an e-commerce website built by Elite Web Studio" />
+          <div class="overlay" id="proj1desc">E-commerce Website for Fashion Brand</div>
+        </article>
+        <article class="gallery-item" role="listitem" tabindex="0" aria-describedby="proj2desc">
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&q=80" alt="Modern business landing page website screenshot" />
+          <div class="overlay" id="proj2desc">Corporate Landing Page for Consulting Firm</div>
+        </article>
+        <article class="gallery-item" role="listitem" tabindex="0" aria-describedby="proj3desc">
+          <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80" alt="Dashboard interface of a web application" />
+          <div class="overlay" id="proj3desc">Web Application Dashboard for SaaS</div>
+        </article>
+        <article class="gallery-item" role="listitem" tabindex="0" aria-describedby="proj4desc">
+          <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=600&q=80" alt="Creative portfolio website screenshot" />
+          <div class="overlay" id="proj4desc">Portfolio Website for Creative Freelancer</div>
+        </article>
+        <article class="gallery-item" role="listitem" tabindex="0" aria-describedby="proj5desc">
+          <img src="https://images.unsplash.com/photo-1525186402429-83f0a907ab64?auto=format&fit=crop&w=600&q=80" alt="Food delivery website screenshot" />
+          <div class="overlay" id="proj5desc">Food Delivery Service Platform</div>
+        </article>
+        <article class="gallery-item" role="listitem" tabindex="0" aria-describedby="proj6desc">
+          <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=600&q=80" alt="Technology blog website screenshot" />
+          <div class="overlay" id="proj6desc">Tech Blog & News Website</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Clients Section -->
+  <section id="clients" aria-labelledby="clients-title">
+    <h2 id="clients-title">Trusted by Industry Leaders</h2>
+    <div class="clients-logos" role="list">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix logo" class="client-logo" role="listitem" loading="lazy" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft logo" class="client-logo" role="listitem" loading="lazy" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Shopify_logo_2018.svg" alt="Shopify logo" class="client-logo" role="listitem" loading="lazy" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Slack_Technologies_Logo.svg" alt="Slack logo" class="client-logo" role="listitem" loading="lazy" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Apple_logo_black.svg" alt="Apple logo" class="client-logo" role="listitem" loading="lazy" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Instagram_logo.svg" alt="Instagram logo" class="client-logo" role="listitem" loading="lazy" />
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials" aria-labelledby="testimonials-title">
+    <div class="container">
+      <h2 id="testimonials-title">What Our Clients Say</h2>
+      <p class="description">We pride ourselves on delivering exceptional service. Here's what a few of our clients have to say.</p>
+      <div class="testimonial-container" role="region" aria-live="polite" aria-atomic="true" aria-label="Client testimonials">
+        <article class="testimonial-slide active" tabindex="0" aria-label="Testimonial 1">
+          <p class="testimonial-text">"ELITE WEB STUDIO transformed our outdated website into a modern, user-friendly platform that has dramatically increased our online sales."</p>
+          <p class="testimonial-author">Jessica Smith</p>
+          <p class="testimonial-position">CEO, FashionHub</p>
+        </article>
+        <article class="testimonial-slide" tabindex="0" aria-label="Testimonial 2">
+          <p class="testimonial-text">"The team is professional, responsive, and truly cares about delivering quality. Highly recommended for any web development needs."</p>
+          <p class="testimonial-author">Mohamed Ali</p>
+          <p class="testimonial-position">Founder, TechVision</p>
+        </article>
+        <article class="testimonial-slide" tabindex="0" aria-label="Testimonial 3">
+          <p class="testimonial-text">"Our new web app works flawlessly. ELITE WEB STUDIO understood our requirements perfectly and delivered on time."</p>
+          <p class="testimonial-author">Linda Martinez</p>
+          <p class="testimonial-position">Product Manager, SaaSPro</p>
+        </article>
+      </div>
+      <div class="testimonial-nav" role="navigation" aria-label="Testimonial navigation">
+        <button id="prevTestimonial" aria-label="Previous testimonial" aria-controls="testimonials">&larr;</button>
+        <button id="nextTestimonial" aria-label="Next testimonial" aria-controls="testimonials">&rarr;</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" aria-labelledby="contact-title">
+    <div class="container">
+      <h2 id="contact-title">Get in Touch</h2>
+      <p class="description">Ready to start your project or have questions? We're here to help you build your website dreams.</p>
+      <form class="contact-form" aria-label="Contact form for inquiries" id="contactForm" novalidate>
+        <input type="text" name="name" id="name" placeholder="Your full name" aria-required="true" required autocomplete="name" />
+        <input type="email" name="email" id="email" placeholder="Your email address" aria-required="true" required autocomplete="email" />
+        <input type="tel" name="phone" id="phone" placeholder="Your phone number (optional)" autocomplete="tel" pattern="[\d\s()+-]*" />
+        <textarea name="message" id="message" placeholder="Your message" aria-required="true" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+      <p id="formStatus" role="alert" aria-live="assertive" style="margin-top: 20px;"></p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <p>&copy; 2024 ELITE WEB STUDIO. All rights reserved. Made with ❤️ by ELITE WEB STUDIO.</p>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    const mobileToggle = document.querySelector('.mobile-nav-toggle');
+    const nav = document.getElementById('navbar');
+    mobileToggle.addEventListener('click', () => {
+      const expanded = mobileToggle.getAttribute('aria-expanded') === 'true' || false;
+      mobileToggle.setAttribute('aria-expanded', !expanded);
+      nav.classList.toggle('open');
+    });
+
+    // Highlight nav on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('nav a');
+
+    function navHighlighter() {
+      let scrollY = window.pageYOffset;
+
+      sections.forEach(current => {
+        const sectionHeight = current.offsetHeight;
+        const sectionTop = current.offsetTop - 80;
+        const sectionId = current.getAttribute('id');
+
+        if(scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+          navLinks.forEach(link => {
+            link.classList.remove('active');
+            if(link.getAttribute('href') === `#${sectionId}`) {
+              link.classList.add('active');
+            }
+          });
+        }
+      });
+    }
+    window.addEventListener('scroll', navHighlighter);
+
+    // Testimonials slider logic without auto rotation
+    const testimonials = document.querySelectorAll('.testimonial-slide');
+    const prevBtn = document.getElementById('prevTestimonial');
+    const nextBtn = document.getElementById('nextTestimonial');
+    let currentTestimonial = 0;
+
+    function showTestimonial(index) {
+      testimonials.forEach((t, i) => {
+        t.classList.toggle('active', i === index);
+        if(i === index) {
+          t.setAttribute('tabindex', '0');
+          t.focus();
+        } else {
+          t.setAttribute('tabindex', '-1');
+        }
+      });
+    }
+
+    prevBtn.addEventListener('click', () => {
+      currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
+      showTestimonial(currentTestimonial);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+      showTestimonial(currentTestimonial);
+    });
+
+    // Contact form submission to WhatsApp number
+    const contactForm = document.getElementById('contactForm');
+    const formStatus = document.getElementById('formStatus');
+
+    // Set your target WhatsApp number here, with country code and no symbols, e.g. "15551234567"
+    const whatsappNumber = '1234567890';
+
+    contactForm.addEventListener('submit', function(event){
+      event.preventDefault();
+      formStatus.textContent = '';
+      if(!contactForm.checkValidity()){
+        formStatus.style.color = 'crimson';
+        formStatus.textContent = 'Please fill out the form correctly.';
+        contactForm.reportValidity();
+        return;
+      }
+
+      // Extract form values and encode for URL
+      const name = encodeURIComponent(contactForm.name.value.trim());
+      const email = encodeURIComponent(contactForm.email.value.trim());
+      const phoneRaw = contactForm.phone.value.trim();
+      const phone = encodeURIComponent(phoneRaw.length > 0 ? phoneRaw : 'N/A');
+      const message = encodeURIComponent(contactForm.message.value.trim());
+
+      // Compose WhatsApp message text
+      const whatsappMessage = `Hello!%0A%0AMy name is ${name}.%0AEmail: ${email}%0APhone: ${phone}%0AMessage: ${message}%0A%0AThanks.`;
+
+      // Construct WhatsApp API URL (open in new tab)
+      const whatsappURL = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+
+      // Open WhatsApp link
+      window.open(whatsappURL, '_blank', 'noopener');
+
+      // Show confirmation message
+      formStatus.style.color = '#00bfa6';
+      formStatus.textContent = 'Opening WhatsApp to send your message. If not redirected, please ensure you have WhatsApp installed or use WhatsApp Web.';
+      
+      // Reset form after a short delay
+      setTimeout(() => {
+        contactForm.reset();
+        formStatus.textContent = '';
+      }, 8000);
+    });
+
+    // Close mobile nav on link click (mobile only)
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if(nav.classList.contains('open')){
+          nav.classList.remove('open');
+          mobileToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
