@@ -2884,5 +2884,35 @@
       }
     });
   </script>
+      </script>
+    <audio id="bg-music" loop>
+      <source src="music.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const music = document.getElementById("bg-music");
+      music.volume = 0; // Start at 0%
+
+      // Start music after first click anywhere
+      document.body.addEventListener("click", () => {
+        music.currentTime = 18; // Skip first 17 seconds
+        music.play();
+
+        // Gradually increase volume to 0.6 (60%)
+        let targetVolume = 0.6;
+        let step = 0.06; // Increase by 6% per step
+        let interval = 80; // Faster: every 80ms
+
+        let fade = setInterval(() => {
+          if (music.volume < targetVolume) {
+            music.volume = Math.min(music.volume + step, targetVolume);
+          } else {
+            clearInterval(fade);
+          }
+        }, interval);
+      }, { once: true });
+    });
+    </script>
 </body>
 </html>
